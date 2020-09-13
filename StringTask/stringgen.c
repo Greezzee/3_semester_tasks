@@ -11,7 +11,8 @@ void GenerateString(int n, char* string)
     {
         int len = strlen(string);
         string[len] = counter;
-
+        
+        // лучше использовать готовую ф-ю strncpy вместо цикла ниже
         for (int j = 0; j < len; j++)
             string[len + j + 1] = string[j];
         counter++;
