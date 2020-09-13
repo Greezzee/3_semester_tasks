@@ -6,6 +6,7 @@ int main() {
     char start_base = 0, out_base = 0;
     unsigned long input_number = 0;
 
+    // fixit: создайте отдельную константу для числа 33
     char in[33];
     char* end;
     printf("Base: ");
@@ -22,6 +23,8 @@ int main() {
     char out[33] = {};
     int i = 0;
 
+    // пожалуйста, вынесете код перевода из одной системы в другую в отдельную ф-ю
+    // переворот и прочие специфичные алгоритму вещи должны быть внутри этой ф-и
     while (input_number != 0)
     {
         int d = input_number % out_base;
