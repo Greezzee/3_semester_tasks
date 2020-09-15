@@ -2,45 +2,57 @@
 #include <stdlib.h>
 #include <string.h>
 
+//Заметил, что компилятор gcc не позволяет использовать const переменные как размер массива на стэке
+//g++ при этом разрешает подобное
+//Потому вместо const size_t пришлось применить define, чтобы работало на как на gcc, так и на g++
+#define MaxSymbolsInNumber 33
+
+void Translate(int input_number, int out_base, char* out)
+{
+    if (input_number == 0) {
+        out[0] = '0';
+        return;
+    }
+    
+    char reversed_out[MaxSymbolsInNumber] = {};
+    int i = 0;
+    while (input_number != 0)
+    {
+        int d = input_number % out_base;
+        input_number /= out_base;
+        char c = d < 10 ? d + '0' : d - 10 + 'A';
+        reversed_out[i] = c;
+        i++;
+    }
+
+    int flag = 0;
+    int cur_symbol = 0;
+    for (int j = i - 1; j >= 0; j--) {
+        if (flag || reversed_out[j] != '0') {
+            out[cur_symbol] = reversed_out[j];
+            cur_symbol++;
+            flag = 1;
+        }
+    }
+}
+
 int main() {
     char start_base = 0, out_base = 0;
     unsigned long input_number = 0;
 
-    // fixit: создайте отдельную константу для числа 33
-    char in[33];
+    char in[MaxSymbolsInNumber];
     char* end;
     printf("Base: ");
     scanf("%hhd", &start_base);
     printf("Number: ");
     scanf("%s", in);
     input_number = strtol(in, &end, start_base);
-
-    if (input_number == 0)
-        printf("0");
-    
     printf("Out base: ");
     scanf("%hhd", &out_base);
-    char out[33] = {};
-    int i = 0;
-
-    // пожалуйста, вынесете код перевода из одной системы в другую в отдельную ф-ю
-    // переворот и прочие специфичные алгоритму вещи должны быть внутри этой ф-и
-    while (input_number != 0)
-    {
-        int d = input_number % out_base;
-        input_number /= out_base;
-        char c = d < 10 ? d + '0' : d - 10 + 'A';
-        out[i] = c;
-        i++;
-    }
+    char out[MaxSymbolsInNumber] = {};
+    Translate(input_number, out_base, out);
     
-    int flag = 0;
-    for (int j = i - 1; j >= 0; j--) {
-        if (flag || out[j] != '0') {
-            printf("%c", out[j]);
-            flag = 1;
-        }
-    }
-    printf("\n");
+    printf("%s\n", out);
+
     return 0;
 }
