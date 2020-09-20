@@ -1,6 +1,6 @@
 1 ls
 5 ls -al
 
-2 pwd
+2 pw
 
 3 echo Hello, world

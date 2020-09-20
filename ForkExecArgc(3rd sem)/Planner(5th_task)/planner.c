@@ -66,6 +66,14 @@ int main(int argc, char** argv)
 		pid_t pid = fork();
 		if (pid == 0) {
 			execvp(command[i].command[0], command[i].command);
+				
+			printf("\033[0;31m");
+			printf("Incorrect command: ");
+			printf("\033[0m");
+			for (size_t j = 0; j < command[i].words_count; j++)
+				printf("%s ", command[i].command[j]);
+			printf("\n");
+			exit(1);
 		}
 		else {
 			int status = 0;
