@@ -35,6 +35,8 @@ int main() {
 			exit(-1);
 		}
 		printf("Multiplicator exiting\n");
+		close(fd[0]);
+		close(fd[1]);
 		exit(0);
 	}
 	else {
@@ -57,7 +59,8 @@ int main() {
 			printf("Incorrect pipe read\n");
 			exit(-1);
 		}
-
+		close(fd[0]);
+		close(fd[1]);
 		printf("a * b = %d\n", out);
 	}
 	return 0;
