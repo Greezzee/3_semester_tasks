@@ -19,10 +19,12 @@ void *Read(void* data)
 {
 	struct ThreadData* info = (struct ThreadData*)data;
 	int fd;
+	printf("Waiting\n");
 	if ((fd = open(info->fifo_name, O_RDONLY)) < 0) {
 		printf("Can't open FIFO for reading\n");
 		exit(-1);
 	}
+	printf("Connected!\n");
 
 	char message[MAX_MESSAGE + 1] = {};
 
