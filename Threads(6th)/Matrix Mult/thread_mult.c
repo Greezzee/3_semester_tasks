@@ -69,7 +69,7 @@ struct Matrix_t MatrixMult(struct Matrix_t a, struct Matrix_t b)
 
     result.matrix = (double*)calloc(result.n * result.m, sizeof(double));
 
-    size_t cores = get_nprocs();
+    size_t cores = get_nprocs() * 2;
     //printf("cores: %d\n", cores);
 
     struct ThreadMultData* data = (struct ThreadMultData*)calloc(cores, sizeof(struct ThreadMultData));
