@@ -11,7 +11,7 @@ int main() {
     struct sockaddr_in addr, addr_to_recv;
     addr.sin_family = AF_INET;
     addr.sin_port = htons(51707);
-    inet_aton("127.0.0.1", &addr.sin_addr);
+    inet_aton("10.0.2.15", &addr.sin_addr);
     bzero(addr.sin_zero, 8);
     struct sockaddr test;
     int my_socket;

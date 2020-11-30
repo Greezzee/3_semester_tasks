@@ -26,7 +26,7 @@ int main() {
     }
     addr_to_send = addr;
     addr_to_send.sin_port = htons(51707);
-    inet_aton("127.0.0.1", &addr_to_send.sin_addr);
+    inet_aton("10.0.2.15", &addr_to_send.sin_addr);
     printf("Binding success, sender started\n");
     for (int i = 0; i < 10; i++) {
         char mes[] = "Hello, world\n";
