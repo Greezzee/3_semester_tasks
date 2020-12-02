@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main() {
+int main(int argc, char* argv[]) {
     struct sockaddr_in addr, addr_to_send;
     addr.sin_family = AF_INET;
     addr.sin_port = htons(0);
@@ -25,8 +25,8 @@ int main() {
         exit(-1);
     }
     addr_to_send = addr;
-    addr_to_send.sin_port = htons(51707);
-    inet_aton("10.0.2.15", &addr_to_send.sin_addr);
+    addr_to_send.sin_port = htons(atoi(argv[2]));
+    inet_aton(argv[1], &addr_to_send.sin_addr);
     printf("Binding success, sender started\n");
     for (int i = 0; i < 10; i++) {
         char mes[] = "Hello, world\n";
