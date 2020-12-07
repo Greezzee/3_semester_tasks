@@ -21,6 +21,11 @@ enum package_t {
     CONNECTION_ACCEPT,
     CONNECTION_DENY,
 
+    GAME_START,
+
+    GAME_TURN_REQ,
+    GAME_TURN_DATA,
+
     DISCONNECT
 };
 
@@ -123,8 +128,20 @@ int main() {
                 if (players_connected == player_count)
                     break;
             }
-
         }
+    }
+    printf("All player connected. Starting in 3 seconds\n");
+    sleep(3);
 
+    struct network_package starter;
+    starter.type = GAME_START;
+
+    for (int i = 0; i < player_count; i++)
+        sendto(server_socket, &starter, sizeof(struct network_package), 0, (struct sockaddr*)(clients + i), sizeof(struct sockaddr));
+
+    while (1) {
+        
+
+        sleep(1);
     }
 }

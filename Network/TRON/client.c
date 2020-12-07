@@ -21,6 +21,11 @@ enum package_t {
     CONNECTION_ACCEPT,
     CONNECTION_DENY,
 
+    GAME_START,
+
+    GAME_TURN_REQ,
+    GAME_TURN_DATA,
+
     DISCONNECT
 };
 
@@ -64,10 +69,10 @@ void RecievePackageFromServer(int my_socket, struct sockaddr_in* server, struct 
         struct sockaddr_in buf;
         socklen_t buf_len = sizeof(struct sockaddr);
         recvfrom(my_socket, package, sizeof(struct network_package), 0, (struct sockaddr*)&buf, &buf_len);
-        printf("Recieved\n");
+        //printf("Recieved\n");
         if (buf.sin_addr.s_addr == server->sin_addr.s_addr && buf.sin_port == server->sin_port)
             return;
-        printf("Wrong server\n");
+        //printf("Wrong server\n");
     }
 }
 
@@ -95,6 +100,20 @@ int main() {
         printf("Server error\n");
         exit(-1);
     }
-    printf("Connected to server\n");
-    while(1);
+    printf("Connected to server waiting for players\n");
+
+    do {
+        RecievePackageFromServer(client_socket, &server, &pack);
+    } while (pack.type != GAME_START);
+
+    while(1) {
+        do {
+        RecievePackageFromServer(client_socket, &server, &pack);
+        } while (pack.type != GAME_TURN_REQ);
+
+        printf("Turn!\n");
+
+        pack.type = GAME_TURN_DATA;
+        sendto(client_socket, &pack, sizeof(pack), 0, (struct sockaddr*)&server, sizeof(server));
+    }
 }
