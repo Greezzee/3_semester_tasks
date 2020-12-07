@@ -10,9 +10,12 @@
 #include <termios.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <pthread.h>
 
 #define DATA_SIZE 16
 #define IP_LEN 17
+#define FIELD_X 20
+#define FIELD_Y 20
 
 enum package_t {
     ERROR,
@@ -26,7 +29,11 @@ enum package_t {
     GAME_TURN_REQ,
     GAME_TURN_DATA,
 
-    DISCONNECT
+    OK,
+
+    DISCONNECT,
+
+    GAME_OVER
 };
 
 struct network_package {
@@ -76,6 +83,29 @@ void RecievePackageFromServer(int my_socket, struct sockaddr_in* server, struct 
     }
 }
 
+struct termios oldChars, newChars;
+
+void initTermios(int echo)
+{
+    fcntl(0, F_SETFL, O_NONBLOCK);
+    tcgetattr(0, &oldChars);
+    newChars = oldChars;
+    newChars.c_lflag &= ~ICANON;
+    newChars.c_lflag &= echo ? ECHO : ~ECHO;
+    tcsetattr(0, TCSANOW, &newChars);
+}
+
+void* UpdateInput(void* buffer)
+{
+    char* input = (char*)buffer;
+    while(1) {
+        char buf = getchar();
+        if (buf != -1)
+            *input = buf;
+    }
+    return NULL;
+}
+
 int main() {
     struct sockaddr_in server = {}, client = {};
 
@@ -92,7 +122,7 @@ int main() {
     server = InitServer(server_ip, server_port);
     int client_socket = CreateSocket(&client);
 
-    struct network_package pack;
+    struct network_package pack, server_pack;
     pack.type = CONNECTION_REQ;
     sendto(client_socket, &pack, sizeof(pack), 0, (struct sockaddr*)&server, sizeof(server));
     RecievePackageFromServer(client_socket, &server, &pack);
@@ -100,20 +130,60 @@ int main() {
         printf("Server error\n");
         exit(-1);
     }
-    printf("Connected to server waiting for players\n");
 
+    char your_id = pack.data[0];
+    printf("Connected to server waiting for players. You are [%hhd]\n", your_id);
+    char input_buf = -1;
     do {
         RecievePackageFromServer(client_socket, &server, &pack);
     } while (pack.type != GAME_START);
+    printf("Game started!\n");
+    initTermios(0);
+    pthread_t input_id;
+    pthread_create(&input_id, NULL, UpdateInput, &input_buf);
+
+
+    char drawable_gamefield[(FIELD_Y + 2) * (FIELD_X * 2 + 3)];
+
+    for (int i = 0; i < (FIELD_Y + 2) * (FIELD_X * 2 + 3); i++)
+        drawable_gamefield[i] = ' ';
+    for (int i = 0; i < FIELD_Y + 2; i++) {
+        drawable_gamefield[i * (FIELD_X * 2 + 3)] = '*';
+        drawable_gamefield[i * (FIELD_X * 2 + 3) + FIELD_X * 2 + 1] = '*';
+        drawable_gamefield[i * (FIELD_X * 2 + 3) + FIELD_X * 2 + 2] = '\n';
+    }
+    for (int i = 0; i < FIELD_X * 2 + 2; i++) {
+        drawable_gamefield[i] = '*';
+        drawable_gamefield[(FIELD_Y + 1) * (FIELD_X * 2 + 3) + i] = '*';
+    }
+
 
     while(1) {
         do {
-        RecievePackageFromServer(client_socket, &server, &pack);
+            RecievePackageFromServer(client_socket, &server, &pack);
         } while (pack.type != GAME_TURN_REQ);
-
-        printf("Turn!\n");
-
+        printf("OK\n");
         pack.type = GAME_TURN_DATA;
+        pack.data[0] = your_id - 1;
+        pack.data[1] = input_buf;
+        input_buf = -1;
         sendto(client_socket, &pack, sizeof(pack), 0, (struct sockaddr*)&server, sizeof(server));
+        do {
+            RecievePackageFromServer(client_socket, &server, &server_pack);
+        } while (server_pack.type != GAME_TURN_DATA);
+
+        pack.type = OK;
+        sendto(client_socket, &pack, sizeof(pack), 0, (struct sockaddr*)&server, sizeof(server));
+
+        for (int i = 0; i < (FIELD_Y + 2) * (FIELD_X * 2 + 3); i++)
+            if (drawable_gamefield[i] != ' ' && drawable_gamefield[i] != '*' && drawable_gamefield[i] != '\n')
+                drawable_gamefield[i] = '.';
+
+        for(int i = 0; server_pack.data[i] != -1; i += 2) {
+            drawable_gamefield[(server_pack.data[i + 1] + 1) * (FIELD_X * 2 + 3) + server_pack.data[i] * 2 + 1] = '1' + i / 2;
+        }
+
+        printf("\033[0d\033[2J");
+        printf("%s", drawable_gamefield);
     }
 }
