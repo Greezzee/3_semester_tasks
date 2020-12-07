@@ -12,6 +12,7 @@
 #include <unistd.h>
 
 #define DATA_SIZE 16
+#define IP_LEN 17
 
 enum package_t {
     ERROR,
@@ -28,11 +29,11 @@ struct network_package {
     char data[DATA_SIZE];
 };
 
-struct sockaddr_in InitServer(int port) {
+struct sockaddr_in InitServer(char ip[IP_LEN], int port) {
     struct sockaddr_in server;
     server.sin_family = AF_INET;
     server.sin_port = htons(port);
-    inet_aton("127.0.0.1", &server.sin_addr);
+    inet_aton(ip, &server.sin_addr);
     return server;
 }
 
@@ -47,10 +48,6 @@ int CreateSocket(struct sockaddr_in* addr) {
         perror("Unable to bind\n");
         exit(-1);
     }
-    char zero = 0;
-    socklen_t len;
-    sendto(my_socket, &zero, 1, 0, (struct sockaddr*)addr, sizeof(*addr));
-    recvfrom(my_socket, &zero, 1, 0, (struct sockaddr*)addr, &len);
     return my_socket;
 }
 
@@ -72,15 +69,19 @@ int main() {
     int* clients_connection = (int*)calloc(player_count, sizeof(int));
     int players_connected = 0;
 
+    printf("Enter server ip: ");
+    char server_ip[IP_LEN];
+    scanf("%s", server_ip);
+
     printf("Enter server port: ");
     unsigned port = 0;
     scanf("%u", &port);
 
-    server = InitServer(port);
+    server = InitServer(server_ip, port);
     int server_socket =  CreateSocket(&server);
 
     while(1) {
-        //printf("\033[0d\033[2J");
+        printf("\033[0d\033[2J");
         printf("Server created at %s:%u\n. Waiting for players:\n", inet_ntoa(server.sin_addr), port);
         for (int i = 0; i < player_count; i++) {
             printf("[%d]: ", i + 1);
@@ -91,10 +92,12 @@ int main() {
         }
 
         struct sockaddr_in buf_client;
-        socklen_t buf_client_size;
+        socklen_t buf_client_size = sizeof(struct sockaddr);
         struct network_package in_pack = {}, out_pack = {};
 
         int out = recvfrom(server_socket, &in_pack, sizeof(struct network_package), 0, (struct sockaddr*)&buf_client, &buf_client_size);
+        if (buf_client.sin_port == 0)
+            continue;
         printf("%d\n", out);
         if (in_pack.type != CONNECTION_REQ) {
             out_pack.type = INCORRECT_MES;

@@ -29,11 +29,11 @@ struct network_package {
     char data[DATA_SIZE];
 };
 
-struct sockaddr_in InitClient() {
+struct sockaddr_in InitClient(char ip[IP_LEN]) {
     struct sockaddr_in client;
     client.sin_family = AF_INET;
     client.sin_port = INADDR_ANY;
-    inet_aton("127.0.0.1", &client.sin_addr);
+    inet_aton(ip, &client.sin_addr);
     return client;
 }
 
@@ -62,8 +62,9 @@ int CreateSocket(struct sockaddr_in* addr) {
 void RecievePackageFromServer(int my_socket, struct sockaddr_in* server, struct network_package* package) {
     while (1) {
         struct sockaddr_in buf;
-        socklen_t buf_len;
+        socklen_t buf_len = sizeof(struct sockaddr);
         recvfrom(my_socket, package, sizeof(struct network_package), 0, (struct sockaddr*)&buf, &buf_len);
+        printf("Recieved\n");
         if (buf.sin_addr.s_addr == server->sin_addr.s_addr && buf.sin_port == server->sin_port)
             return;
         printf("Wrong server\n");
@@ -73,15 +74,16 @@ void RecievePackageFromServer(int my_socket, struct sockaddr_in* server, struct 
 int main() {
     struct sockaddr_in server = {}, client = {};
 
-    char server_ip[IP_LEN] = {};
+    char server_ip[IP_LEN] = {}, client_ip[IP_LEN] = {};
     unsigned server_port;
-
+    printf("Enter your IP: ");
+    scanf("%s", client_ip);
     printf("Enter IP to connect: ");
     scanf("%s", server_ip);
     printf("Enter port: ");
     scanf("%u", &server_port);
 
-    client = InitClient();
+    client = InitClient(client_ip);
     server = InitServer(server_ip, server_port);
     int client_socket = CreateSocket(&client);
 
