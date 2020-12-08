@@ -48,9 +48,10 @@ struct network_package {
 struct point_t {
     char x, y;
     char rotation;
+    char is_alive;
 };
 
-const struct point_t start_pos[4] = {{1, 1, 0}, {FIELD_X - 2, 1, 2}, {1, FIELD_Y - 2, 0}, {FIELD_X - 2, FIELD_Y - 2, 2}};
+const struct point_t start_pos[4] = {{1, 1, 0, 1}, {FIELD_X - 2, 1, 2, 1}, {1, FIELD_Y - 2, 0, 1}, {FIELD_X - 2, FIELD_Y - 2, 2, 1}};
 
 struct sockaddr_in InitServer(char ip[IP_LEN], int port) {
     struct sockaddr_in server;
@@ -191,11 +192,13 @@ int main() {
         struct sockaddr_in buf_client;
         socklen_t buf_client_size = sizeof(struct sockaddr);
         struct network_package in_pack = {}, out_pack = {};
+
         out_pack.type = GAME_TURN_REQ;
         for (int i = 0; i < player_count; i++)
             client_package[i] = 0;
         for (int i = 0; i < player_count; i++)
             sendto(server_socket, &out_pack, sizeof(struct network_package), 0, (struct sockaddr*)(clients + i), sizeof(struct sockaddr));
+
         while (1) {
             recvfrom(server_socket, &in_pack, sizeof(struct network_package), 0, (struct sockaddr*)&buf_client, &buf_client_size);
             if (in_pack.type != GAME_TURN_DATA)
@@ -209,7 +212,8 @@ int main() {
             if (flag)
                 break;
         }
-        for(int i = 0; i < player_count; i++) {
+
+        for(int i = 0; i < player_count; i++) if (positions[i].is_alive) {
             switch (client_commands[i])
             {
             case 'a': positions[i].rotation = 2; break;
@@ -241,29 +245,38 @@ int main() {
                     positions[i].y -= FIELD_Y;
                 break;
             }
+            if (gamefield[positions[i].y][positions[i].x] != ' ') {
+                positions[i].is_alive = 0;
+                continue;
+            }
             gamefield[positions[i].y][positions[i].x] = '1' + i;
         }
+
         printf("\033[0d\033[2J");
         for(int i = 0; i < 50; i++)
             printf("*");
         printf("\n");
+
         for (int i = 0; i < FIELD_Y; i++) {
             for(int j = 0; j < FIELD_X; j++)
                 drawable_field[i * (FIELD_X * 2 + 1) + j * 2] = gamefield[i][j];
             drawable_field[i * (FIELD_X * 2 + 1) + FIELD_X * 2] = '\n';
         }
         printf("%s", drawable_field);
-        long end = get_time();
 
         out_pack.type = GAME_TURN_DATA;
         for (int i = 0; i < DATA_SIZE; i++)
             out_pack.data[i] = -1;
         for (int i = 0; i < player_count; i++) {
-            out_pack.data[2 * i] = positions[i].x;
-            out_pack.data[2 * i + 1] = positions[i].y;
+            out_pack.data[3 * i] = positions[i].x;
+            out_pack.data[3 * i + 1] = positions[i].y;
+            out_pack.data[3 * i + 2] = positions[i].is_alive;
         }
-        for (int i = 0; i < player_count; i++)
+        for (int i = 0; i < player_count; i++) {
+            if (positions[i].is_alive) out_pack.type = GAME_TURN_DATA;
+            else                       out_pack.type = GAME_OVER;
             sendto(server_socket, &out_pack, sizeof(struct network_package), 0, (struct sockaddr*)(clients + i), sizeof(struct sockaddr));
+        }
 
         for (int i = 0; i < player_count; i++)
             client_package[i] = 0;
@@ -280,6 +293,7 @@ int main() {
                 break;
         }
 
+        long end = get_time();
         usleep(300000 - (end - start));
     }
 }
