@@ -117,6 +117,9 @@ int main() {
 
     server = InitServer(server_ip, port);
     int server_socket =  CreateSocket(&server);
+    
+    FILE* logs = fopen("log.txt", "w");
+    int current_step = 0;
 
     while(1) {
         printf("\033[0d\033[2J");
@@ -188,6 +191,7 @@ int main() {
     for(int i = 0; i < FIELD_Y * (FIELD_X * 2 + 1); i++)
         drawable_field[i] = ' ';
     while (1) {
+        current_step++;
         long start = get_time();
         struct sockaddr_in buf_client;
         socklen_t buf_client_size = sizeof(struct sockaddr);
@@ -196,6 +200,7 @@ int main() {
         out_pack.type = GAME_TURN_REQ;
         for (int i = 0; i < player_count; i++)
             client_package[i] = 0;
+        fprintf(logs, "[%d] Requests sended\n", current_step);
         for (int i = 0; i < player_count; i++)
             sendto(server_socket, &out_pack, sizeof(struct network_package), 0, (struct sockaddr*)(clients + i), sizeof(struct sockaddr));
 
@@ -212,7 +217,7 @@ int main() {
             if (flag)
                 break;
         }
-
+        fprintf(logs, "[%d] players data recieved\n", current_step);
         for(int i = 0; i < player_count; i++) if (positions[i].is_alive) {
             switch (client_commands[i])
             {
@@ -277,7 +282,7 @@ int main() {
             else                       out_pack.type = GAME_OVER;
             sendto(server_socket, &out_pack, sizeof(struct network_package), 0, (struct sockaddr*)(clients + i), sizeof(struct sockaddr));
         }
-
+        fprintf(logs, "[%d] Game data sended\n", current_step);
         for (int i = 0; i < player_count; i++)
             client_package[i] = 0;
         while (1) {
@@ -292,7 +297,7 @@ int main() {
             if (flag)
                 break;
         }
-
+        fprintf(logs, "[%d] OK recieved\n", current_step);
         long end = get_time();
         usleep(300000 - (end - start));
     }

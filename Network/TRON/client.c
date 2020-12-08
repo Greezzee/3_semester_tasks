@@ -175,9 +175,17 @@ int main() {
         sendto(client_socket, &pack, sizeof(pack), 0, (struct sockaddr*)&server, sizeof(server));
 
 
-        for (int i = 0; i < (FIELD_Y + 2) * (FIELD_X * 2 + 3); i++)
-            if (drawable_gamefield[i] != ' ' && drawable_gamefield[i] != '*' && drawable_gamefield[i] != '\n')
-                drawable_gamefield[i] = '.';
+        for (int i = 0; i < (FIELD_Y + 2) * (FIELD_X * 2 + 3); i++) {
+            switch (drawable_gamefield[i])
+            {
+            case '1': drawable_gamefield[i] = '.'; break;
+            case '2': drawable_gamefield[i] = '+'; break;
+            case '3': drawable_gamefield[i] = '#'; break;
+            case '4': drawable_gamefield[i] = '@'; break;
+            default:
+                break;
+            }
+        }
 
         for(int i = 0; server_pack.data[i] != -1; i += 3) if (server_pack.data[i + 2]) {
             drawable_gamefield[(server_pack.data[i + 1] + 1) * (FIELD_X * 2 + 3) + server_pack.data[i] * 2 + 1] = '1' + i / 3;
