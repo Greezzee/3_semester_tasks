@@ -297,7 +297,7 @@ int main() {
             if (flag)
                 break;
         }
-        fprintf(logs, "[%d] OK recieved\n", current_step);
+        fprintf(logs, "[%d] OK recieved\n", current_step);----++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         long end = get_time();
         usleep(300000 - (end - start));
     }
