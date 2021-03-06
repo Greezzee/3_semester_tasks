@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{a4220e44-be99-4d6e-9bc3-07a626ff25b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Utility">
+      <UniqueIdentifier>{5c985409-2da0-4ddf-ae0f-eace999c380a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\TimeManagment">
+      <UniqueIdentifier>{766f5197-6412-4f55-937c-36c6cda6f980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\SceneManagment">
+      <UniqueIdentifier>{d851e0dd-5f7b-468b-b63f-fefabfc3ab24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics">
+      <UniqueIdentifier>{9b02c91a-eaa0-4b51-a299-97ab21ce7ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Control">
+      <UniqueIdentifier>{ba185e0e-5b85-45a4-a08f-fe224d4dedfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Gameplay">
+      <UniqueIdentifier>{9e5161c3-2b46-4ebc-969e-3c35992159fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\GameManagment">
+      <UniqueIdentifier>{e1764fce-69b6-4057-b53b-e9f575452b15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Colliders">
+      <UniqueIdentifier>{114455b6-c8c4-4dae-9ec6-d9d75260f9f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Debugger">
+      <UniqueIdentifier>{6c65ed91-b416-434b-8970-c36456714d38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{532a1395-e35d-46f9-8713-2de7174b3bc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\SceneManagment">
+      <UniqueIdentifier>{ae276248-1d94-4c81-865e-78b25ff7c780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\TimeManagment">
+      <UniqueIdentifier>{7ceaeb2d-28a3-4e83-8d89-fed92bdebf58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Utility">
+      <UniqueIdentifier>{abea43e3-49b4-4edb-b8e5-ed3b5a251f04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Control">
+      <UniqueIdentifier>{3118208d-47cb-4f59-b327-3d2a2c83cb03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Graphics">
+      <UniqueIdentifier>{c5a384ad-eaa7-4936-9f62-51e0610152f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Gameplay">
+      <UniqueIdentifier>{ac1de477-a972-4887-8c9b-412d3ae864a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\GameManagment">
+      <UniqueIdentifier>{5193b1c0-3b01-4c50-876f-b900476f57be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Colliders">
+      <UniqueIdentifier>{ebcf4f41-a4c6-4ea9-af56-130282f5886d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Debugger">
+      <UniqueIdentifier>{1757aaa2-10a0-4230-b639-36134e9fe140}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{147521b3-f045-4ca6-a544-93e5a96039f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{0c55a63b-ea7d-4088-a19f-b755285f89af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\ShaderManagment">
+      <UniqueIdentifier>{d1b6277b-f56e-43a9-9d36-f6f61c342898}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Graphics\ShaderManagment">
+      <UniqueIdentifier>{508b7378-5978-4740-82e0-86f94ddce7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\Graphics\ShaderManagment\LightManager">
+      <UniqueIdentifier>{42cb0787-3308-4f47-9835-fc77472b0fae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\Graphics\ShaderManagment\LightManager">
+      <UniqueIdentifier>{068ad7f3-d205-4a47-a649-61ebe170c30b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tasks">
+      <UniqueIdentifier>{97284589-39bf-4471-bef9-714ac929e1c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Name">
+      <UniqueIdentifier>{1a1076e1-8847-42c6-a0e6-940af11f34df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tasks\PhysicsScene">
+      <UniqueIdentifier>{dbd58c40-34f0-41cd-8260-4579594222be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tasks\Electric">
+      <UniqueIdentifier>{cc908929-b3d4-43f3-8deb-85e171f70e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tasks\Serpinsky">
+      <UniqueIdentifier>{93eb97ee-b7cf-48ed-9778-8f6fc5bc9ef3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="engine\colliders\CircleCollider.cpp">
+      <Filter>Source Files\Engine\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\colliders\Collider.cpp">
+      <Filter>Source Files\Engine\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\utility\Coordinate.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\graphics\DrawData.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\colliders\EllipseCollider.cpp">
+      <Filter>Source Files\Engine\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\gamemanagment\GameManager.cpp">
+      <Filter>Source Files\Engine\GameManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\gameplay\GameObject.cpp">
+      <Filter>Source Files\Engine\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\graphics\GraphicManager.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\control\InputManager.cpp">
+      <Filter>Source Files\Engine\Control</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\utility\Line.cpp">
+      <Filter>Source Files\Engine\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\colliders\PolygonCollider.cpp">
+      <Filter>Source Files\Engine\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\scenemanagment\Scene.cpp">
+      <Filter>Source Files\Engine\SceneManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\scenemanagment\SceneManager.cpp">
+      <Filter>Source Files\Engine\SceneManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\colliders\SquareCollider.cpp">
+      <Filter>Source Files\Engine\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\time\TimeManager.cpp">
+      <Filter>Source Files\Engine\TimeManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Debugger\Debugger.cpp">
+      <Filter>Source Files\Engine\Debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\FPSCounter.cpp">
+      <Filter>Source Files\Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ShaderManagment\ShaderManager.cpp">
+      <Filter>Source Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ShaderManagment\BlurShader.cpp">
+      <Filter>Source Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ShaderManagment\LightManager\LightManager.cpp">
+      <Filter>Source Files\Engine\Graphics\ShaderManagment\LightManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ShaderManagment\SmoothLightShader.cpp">
+      <Filter>Source Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\ShaderManagment\PixelLightShader.cpp">
+      <Filter>Source Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClCompile>
+    <ClCompile Include="engine\gameplay\ObjectContainer.cpp">
+      <Filter>Source Files\Engine\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Gameplay\ObjectsArray.cpp">
+      <Filter>Source Files\Engine\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Main\main.cpp">
+      <Filter>Header Files\Name</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="engine\colliders\CircleCollider.h">
+      <Filter>Header Files\Engine\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\colliders\Collider.h">
+      <Filter>Header Files\Engine\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\utility\Coordinate.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\graphics\DrawData.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\colliders\EllipseCollider.h">
+      <Filter>Header Files\Engine\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\gamemanagment\GameManager.h">
+      <Filter>Header Files\Engine\GameManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\gameplay\GameObject.h">
+      <Filter>Header Files\Engine\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\graphics\GraphicManager.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\control\InputManager.h">
+      <Filter>Header Files\Engine\Control</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\utility\Line.h">
+      <Filter>Header Files\Engine\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\gameplay\ObjectsArray.h">
+      <Filter>Header Files\Engine\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\colliders\PolygonCollider.h">
+      <Filter>Header Files\Engine\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\scenemanagment\Scene.h">
+      <Filter>Header Files\Engine\SceneManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\scenemanagment\SceneManager.h">
+      <Filter>Header Files\Engine\SceneManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\colliders\SquareCollider.h">
+      <Filter>Header Files\Engine\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\time\TimeManager.h">
+      <Filter>Header Files\Engine\TimeManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Debugger\Debugger.h">
+      <Filter>Header Files\Engine\Debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\AllEngine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\FPSCounter.h">
+      <Filter>Header Files\Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderManagment\ShaderManager.h">
+      <Filter>Header Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderManagment\Shader.h">
+      <Filter>Header Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderManagment\BlurShader.h">
+      <Filter>Header Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderManagment\LightManager\LightManager.h">
+      <Filter>Header Files\Engine\Graphics\ShaderManagment\LightManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderManagment\SmoothLightShader.h">
+      <Filter>Header Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\ShaderManagment\PixelLightShader.h">
+      <Filter>Header Files\Engine\Graphics\ShaderManagment</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Colliders\UniversalCollider.h">
+      <Filter>Header Files\Engine\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="engine\gameplay\ObjectContainer.h">
+      <Filter>Header Files\Engine\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Tasks\PhysicsScene\PhysicsScene.h">
+      <Filter>Header Files\Tasks\PhysicsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Tasks\PhysicsScene\Connector.h">
+      <Filter>Header Files\Tasks\PhysicsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Tasks\PhysicsScene\Circle.h">
+      <Filter>Header Files\Tasks\PhysicsScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Tasks\ElectroScene\ElectroScene.h">
+      <Filter>Header Files\Tasks\Electric</Filter>
+    </ClInclude>
+    <ClInclude Include="Tasks\Serpinsky\Serpinsky.h">
+      <Filter>Header Files\Tasks\Serpinsky</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\Graphics\Shaders\SmoothLight.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Engine\Graphics\Shaders\Test.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Engine\Graphics\Shaders\Blur.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Engine\Graphics\Shaders\PixelLight.frag">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

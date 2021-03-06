@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{DFAA8380-E184-44F2-8156-4E0E81BC19FE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>SFML_DYNAMIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Visual Leak Detector\include;C:\Users\zorin\source\repos\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Visual Leak Detector\lib\win32;C:\Users\zorin\source\repos\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>SFML_DYNAMIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>C:\Users\zorin\source\repos\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\Users\zorin\source\repos\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="engine\colliders\CircleCollider.cpp" />
+    <ClCompile Include="engine\colliders\Collider.cpp" />
+    <ClCompile Include="engine\colliders\EllipseCollider.cpp" />
+    <ClCompile Include="engine\colliders\PolygonCollider.cpp" />
+    <ClCompile Include="engine\colliders\SquareCollider.cpp" />
+    <ClCompile Include="engine\control\InputManager.cpp" />
+    <ClCompile Include="Engine\Debugger\Debugger.cpp" />
+    <ClCompile Include="engine\gamemanagment\GameManager.cpp" />
+    <ClCompile Include="engine\gameplay\ObjectContainer.cpp" />
+    <ClCompile Include="engine\gameplay\GameObject.cpp" />
+    <ClCompile Include="Engine\Gameplay\ObjectsArray.cpp" />
+    <ClCompile Include="engine\graphics\DrawData.cpp" />
+    <ClCompile Include="Engine\Graphics\FPSCounter.cpp" />
+    <ClCompile Include="engine\graphics\GraphicManager.cpp" />
+    <ClCompile Include="Engine\Graphics\ShaderManagment\BlurShader.cpp" />
+    <ClCompile Include="Engine\Graphics\ShaderManagment\LightManager\LightManager.cpp" />
+    <ClCompile Include="Engine\Graphics\ShaderManagment\PixelLightShader.cpp" />
+    <ClCompile Include="Engine\Graphics\ShaderManagment\ShaderManager.cpp" />
+    <ClCompile Include="Engine\Graphics\ShaderManagment\SmoothLightShader.cpp" />
+    <ClCompile Include="engine\scenemanagment\Scene.cpp" />
+    <ClCompile Include="engine\scenemanagment\SceneManager.cpp" />
+    <ClCompile Include="engine\time\TimeManager.cpp" />
+    <ClCompile Include="engine\utility\Coordinate.cpp" />
+    <ClCompile Include="engine\utility\Line.cpp" />
+    <ClCompile Include="Main\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\AllEngine.h" />
+    <ClInclude Include="engine\colliders\CircleCollider.h" />
+    <ClInclude Include="engine\colliders\Collider.h" />
+    <ClInclude Include="engine\colliders\EllipseCollider.h" />
+    <ClInclude Include="engine\colliders\PolygonCollider.h" />
+    <ClInclude Include="engine\colliders\SquareCollider.h" />
+    <ClInclude Include="Engine\Colliders\UniversalCollider.h" />
+    <ClInclude Include="engine\control\InputManager.h" />
+    <ClInclude Include="Engine\Debugger\Debugger.h" />
+    <ClInclude Include="engine\gamemanagment\GameManager.h" />
+    <ClInclude Include="engine\gameplay\ObjectContainer.h" />
+    <ClInclude Include="engine\gameplay\GameObject.h" />
+    <ClInclude Include="engine\gameplay\ObjectsArray.h" />
+    <ClInclude Include="engine\graphics\DrawData.h" />
+    <ClInclude Include="Engine\Graphics\FPSCounter.h" />
+    <ClInclude Include="engine\graphics\GraphicManager.h" />
+    <ClInclude Include="Engine\Graphics\ShaderManagment\BlurShader.h" />
+    <ClInclude Include="Engine\Graphics\ShaderManagment\LightManager\LightManager.h" />
+    <ClInclude Include="Engine\Graphics\ShaderManagment\PixelLightShader.h" />
+    <ClInclude Include="Engine\Graphics\ShaderManagment\Shader.h" />
+    <ClInclude Include="Engine\Graphics\ShaderManagment\ShaderManager.h" />
+    <ClInclude Include="Engine\Graphics\ShaderManagment\SmoothLightShader.h" />
+    <ClInclude Include="engine\scenemanagment\Scene.h" />
+    <ClInclude Include="engine\scenemanagment\SceneManager.h" />
+    <ClInclude Include="engine\time\TimeManager.h" />
+    <ClInclude Include="engine\utility\Coordinate.h" />
+    <ClInclude Include="engine\utility\Line.h" />
+    <ClInclude Include="Tasks\ElectroScene\ElectroScene.h" />
+    <ClInclude Include="Tasks\PhysicsScene\Circle.h" />
+    <ClInclude Include="Tasks\PhysicsScene\Connector.h" />
+    <ClInclude Include="Tasks\PhysicsScene\PhysicsScene.h" />
+    <ClInclude Include="Tasks\Serpinsky\Serpinsky.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Engine\Graphics\Shaders\Blur.frag" />
+    <None Include="Engine\Graphics\Shaders\PixelLight.frag" />
+    <None Include="Engine\Graphics\Shaders\SmoothLight.frag" />
+    <None Include="Engine\Graphics\Shaders\Test.frag" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
